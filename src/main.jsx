@@ -1,7 +1,7 @@
 import React from 'react'
 import { createRoot } from 'react-dom/client'
 import './styles.css'
-import { Moon, Sun, ShieldCheck, Phone, Mail, MapPin, Star, ArrowRight, Hammer } from 'lucide-react'
+import { Moon, Sun, ShieldCheck, Phone, Mail, MapPin, Star, ArrowRight, Hammer, MessageCircle, Send } from 'lucide-react'
 
 const services = [
   {
@@ -73,9 +73,22 @@ const testimonials = [
   }
 ]
 
+const aiReplies = [
+  "Absolutely — we can help with that. What city is your project in?",
+  'Great. We serve Buford, Gainesville, Hall, and Gwinnett areas. What type of project do you need (driveway, patio, stamped concrete, or walkway)?',
+  'Perfect. I can help schedule your free estimate now. What is your preferred day and phone number?'
+]
+
 function App() {
   const [dark, setDark] = React.useState(() => localStorage.getItem('theme') !== 'light')
   const [slide, setSlide] = React.useState(0)
+  const [chatOpen, setChatOpen] = React.useState(false)
+  const [messages, setMessages] = React.useState([
+    { role: 'ai', text: 'Hi! I’m the Concrete Professionals AI assistant. I can reply in seconds and help book your appointment right now.' }
+  ])
+  const [chatInput, setChatInput] = React.useState('')
+  const [typing, setTyping] = React.useState(false)
+  const [replyIndex, setReplyIndex] = React.useState(0)
 
   React.useEffect(() => {
     document.documentElement.classList.toggle('dark', dark)
@@ -86,6 +99,22 @@ function App() {
     const timer = setInterval(() => setSlide((s) => (s + 1) % testimonials.length), 4200)
     return () => clearInterval(timer)
   }, [])
+
+  const sendMessage = () => {
+    const text = chatInput.trim()
+    if (!text) return
+
+    setMessages((prev) => [...prev, { role: 'user', text }])
+    setChatInput('')
+    setTyping(true)
+
+    const reply = aiReplies[Math.min(replyIndex, aiReplies.length - 1)]
+    setTimeout(() => {
+      setMessages((prev) => [...prev, { role: 'ai', text: reply }])
+      setTyping(false)
+      setReplyIndex((i) => i + 1)
+    }, 700)
+  }
 
   return (
     <div className='bg-zinc-100 text-zinc-900 dark:bg-zinc-950 dark:text-zinc-100 transition-colors duration-500'>
@@ -222,6 +251,37 @@ function App() {
           Built by <a className='underline hover:text-amber-500 transition-colors' href='mailto:buildveloper@gmail.com'>buildveloper@gmail.com</a>
         </div>
       </footer>
+
+      <button onClick={() => setChatOpen((v) => !v)} className='fixed bottom-20 right-4 bg-zinc-900 dark:bg-zinc-100 text-white dark:text-zinc-900 font-semibold px-4 py-3 rounded-full shadow-2xl transition-all hover:-translate-y-1 inline-flex items-center gap-2 z-50'>
+        <MessageCircle size={16} /> AI Chat
+      </button>
+
+      {chatOpen && (
+        <div className='fixed bottom-36 right-4 w-[340px] max-w-[calc(100vw-2rem)] rounded-2xl border border-zinc-300 dark:border-zinc-700 bg-white dark:bg-zinc-900 shadow-2xl z-50 overflow-hidden'>
+          <div className='px-4 py-3 bg-zinc-900 text-white dark:bg-zinc-100 dark:text-zinc-900'>
+            <p className='font-semibold'>Instant AI Booking Assistant</p>
+            <p className='text-xs opacity-80'>Replies in seconds • Books appointments</p>
+          </div>
+          <div className='p-3 h-72 overflow-y-auto space-y-3'>
+            {messages.map((m, idx) => (
+              <div key={idx} className={`max-w-[85%] rounded-xl px-3 py-2 text-sm ${m.role === 'ai' ? 'bg-zinc-100 dark:bg-zinc-800' : 'bg-amber-500 text-black ml-auto'}`}>
+                {m.text}
+              </div>
+            ))}
+            {typing && <div className='text-xs text-zinc-500'>AI is typing…</div>}
+          </div>
+          <div className='p-3 border-t border-zinc-200 dark:border-zinc-800 flex gap-2'>
+            <input
+              value={chatInput}
+              onChange={(e) => setChatInput(e.target.value)}
+              onKeyDown={(e) => e.key === 'Enter' && sendMessage()}
+              className='input !py-2'
+              placeholder='Ask about pricing or book an estimate…'
+            />
+            <button onClick={sendMessage} className='px-3 rounded-xl bg-amber-500 hover:bg-amber-400 text-black'><Send size={16} /></button>
+          </div>
+        </div>
+      )}
 
       <a href='tel:6783277025' className='fixed bottom-4 right-4 bg-amber-500 hover:bg-amber-400 text-black font-semibold px-5 py-3 rounded-full shadow-2xl transition-all hover:-translate-y-1 inline-flex items-center gap-2'>
         <Hammer size={16} /> Call Now
