@@ -56,9 +56,21 @@ const beforeAfter = [
 ]
 
 const testimonials = [
-  '“Great service and price... Jimmy and his crew got the job done quickly. Highly recommended.” — R.F., Gainesville (Mar 14, 2025)',
-  '“Veteran-run Concrete Professionals did an exceptional job at very reasonable prices.” — A.P., Gainesville (Jan 8, 2025)',
-  '“The basketball court in my backyard was a hot mess. I wish I had called Concrete Professionals to do it originally.” — Gregory L., BBB (Nov 23, 2025)'
+  {
+    quote: '“Great service and price... Jimmy and his crew got the job done quickly. Highly recommended.”',
+    author: 'R.F., Gainesville (Mar 14, 2025)',
+    avatar: 'https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=300&q=80'
+  },
+  {
+    quote: '“Veteran-run Concrete Professionals did an exceptional job at very reasonable prices.”',
+    author: 'A.P., Gainesville (Jan 8, 2025)',
+    avatar: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=300&q=80'
+  },
+  {
+    quote: '“The basketball court in my backyard was a hot mess. I wish I had called Concrete Professionals to do it originally.”',
+    author: 'Gregory L., BBB (Nov 23, 2025)',
+    avatar: 'https://images.unsplash.com/photo-1552058544-f2b08422138a?auto=format&fit=crop&w=300&q=80'
+  }
 ]
 
 function App() {
@@ -158,9 +170,12 @@ function App() {
         <h2 className='text-3xl font-bold mb-8'>Client Testimonials</h2>
         <div className='card min-h-32 relative overflow-hidden'>
           {testimonials.map((t, i) => (
-            <blockquote key={t} className={`absolute inset-0 p-6 flex items-start gap-3 transition-all duration-700 ${i === slide ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-6'}`}>
-              <Star className='text-amber-500 mt-1 shrink-0' />
-              <p>{t}</p>
+            <blockquote key={t.author} className={`absolute inset-0 p-6 flex items-start gap-4 transition-all duration-700 ${i === slide ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-6'}`}>
+              <img src={t.avatar} alt={t.author} className='w-14 h-14 rounded-full object-cover ring-2 ring-amber-500/50 shrink-0' loading='lazy' />
+              <div>
+                <p className='flex items-start gap-2'><Star className='text-amber-500 mt-1 shrink-0' />{t.quote}</p>
+                <p className='mt-3 text-sm text-zinc-500 dark:text-zinc-400 font-medium'>{t.author}</p>
+              </div>
             </blockquote>
           ))}
         </div>
@@ -202,6 +217,9 @@ function App() {
             <p className='font-semibold mb-2'>SEO Keywords</p>
             <p>concrete contractor Buford GA, driveway replacement Gainesville, stamped concrete contractor near me, veteran owned concrete company Georgia</p>
           </div>
+        </div>
+        <div className='max-w-7xl mx-auto px-4 pb-8 text-xs text-zinc-500 dark:text-zinc-400'>
+          Built by <a className='underline hover:text-amber-500 transition-colors' href='mailto:buildveloper@gmail.com'>buildveloper@gmail.com</a>
         </div>
       </footer>
 
