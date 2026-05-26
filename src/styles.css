@@ -18,3 +18,9 @@ body { font-family: Inter, ui-sans-serif, system-ui; }
 .animate-fade-up { animation: fadeUp .7s ease both; }
 .delay-150 { animation-delay: .15s; }
 .reveal { animation: fadeUp .7s ease both; }
+
+
+@media (max-width: 480px) {
+  .card { @apply p-4; }
+  .input { @apply text-sm; }
+}

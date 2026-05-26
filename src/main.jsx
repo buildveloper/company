@@ -117,15 +117,15 @@ function App() {
   }
 
   return (
-    <div className='bg-zinc-100 text-zinc-900 dark:bg-zinc-950 dark:text-zinc-100 transition-colors duration-500'>
+    <div className='bg-zinc-100 text-zinc-900 dark:bg-zinc-950 dark:text-zinc-100 transition-colors duration-500 text-[15px] sm:text-base'>
       <header className='sticky top-0 z-50 backdrop-blur bg-white/65 dark:bg-zinc-900/70 border-b border-zinc-200 dark:border-zinc-800'>
-        <nav className='max-w-7xl mx-auto px-4 py-3 flex items-center justify-between'>
+        <nav className='max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3 flex items-center justify-between gap-3'>
           <a href='#top' className='group'>
-            <p className='font-semibold tracking-wide group-hover:text-amber-500 transition-colors'>Concrete Professionals</p>
+            <p className='font-semibold tracking-wide group-hover:text-amber-500 transition-colors text-sm sm:text-base'>Concrete Professionals</p>
             <p className='text-xs text-amber-500'>Honoring All Who Served</p>
           </a>
-          <div className='flex items-center gap-3'>
-            <a href='#contact' className='px-4 py-2 rounded-full bg-amber-500 hover:bg-amber-400 text-black font-semibold transition-all hover:-translate-y-0.5'>Free Estimate</a>
+          <div className='flex items-center gap-2 sm:gap-3'>
+            <a href='#contact' className='px-3 sm:px-4 py-2 rounded-full bg-amber-500 hover:bg-amber-400 text-black text-sm sm:text-base font-semibold transition-all hover:-translate-y-0.5 whitespace-nowrap'>Free Estimate</a>
             <button aria-label='toggle theme' onClick={() => setDark((v) => !v)} className='p-2 rounded-full border border-zinc-300 dark:border-zinc-700 hover:rotate-12 transition-transform'>{dark ? <Sun size={18} /> : <Moon size={18} />}</button>
           </div>
         </nav>
@@ -134,11 +134,11 @@ function App() {
       <section id='top' className='relative overflow-hidden'>
         <img src='https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=2200&q=80' alt='Premium concrete construction project' className='absolute inset-0 w-full h-full object-cover' />
         <div className='absolute inset-0 bg-gradient-to-r from-zinc-950/85 via-zinc-900/70 to-zinc-900/30' />
-        <div className='relative max-w-7xl mx-auto px-4 py-24 md:py-36 grid md:grid-cols-2 gap-12'>
+        <div className='relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-20 md:py-28 lg:py-36 grid lg:grid-cols-2 gap-8 lg:gap-12'>
           <div className='animate-fade-up'>
             <p className='uppercase text-sm tracking-[0.2em] text-amber-400'>Buford & Gainesville, GA</p>
-            <h1 className='text-4xl md:text-6xl font-bold leading-tight mt-3 text-white'>Luxury Concrete Craftsmanship. Military-Level Standards.</h1>
-            <p className='mt-5 text-zinc-200'>For nearly 9 years, Army veteran Jimmy Buckland and team have delivered high-integrity concrete work for homeowners who demand precision, reliability, and professional communication from start to finish.</p>
+            <h1 className='text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mt-3 text-white max-w-2xl'>Luxury Concrete Craftsmanship. Military-Level Standards.</h1>
+            <p className='mt-5 text-zinc-200 text-sm sm:text-base lg:text-lg max-w-xl'>For nearly 9 years, Army veteran Jimmy Buckland and team have delivered high-integrity concrete work for homeowners who demand precision, reliability, and professional communication from start to finish.</p>
             <div className='mt-7 flex flex-wrap gap-3'>
               <a href='tel:6783277025' className='btn'><Phone size={16} /> (678) 327-7025</a>
               <a href='#services' className='btn-ghost text-white border-white/40 hover:bg-white/10'>View Services <ArrowRight size={15} /></a>
@@ -161,9 +161,9 @@ function App() {
         </div>
       </section>
 
-      <section id='services' className='max-w-7xl mx-auto px-4 py-16'>
-        <h2 className='text-3xl font-bold mb-8'>Concrete Services</h2>
-        <div className='grid md:grid-cols-3 gap-6'>
+      <section id='services' className='max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16'>
+        <h2 className='text-2xl sm:text-3xl font-bold mb-6 sm:mb-8'>Concrete Services</h2>
+        <div className='grid sm:grid-cols-2 xl:grid-cols-3 gap-4 sm:gap-6'>
           {services.map((item, idx) => (
             <article key={item.title} className='card reveal' style={{ animationDelay: `${idx * 90}ms` }}>
               <img src={item.image} alt={item.title} className='w-full h-44 object-cover rounded-xl mb-4' loading='lazy' />
@@ -174,9 +174,9 @@ function App() {
         </div>
       </section>
 
-      <section className='max-w-7xl mx-auto px-4 py-16'>
-        <h2 className='text-3xl font-bold mb-8'>Before & After Projects</h2>
-        <div className='grid md:grid-cols-2 gap-8'>
+      <section className='max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16'>
+        <h2 className='text-2xl sm:text-3xl font-bold mb-6 sm:mb-8'>Before & After Projects</h2>
+        <div className='grid lg:grid-cols-2 gap-5 sm:gap-8'>
           {beforeAfter.map((project) => (
             <article key={project.title} className='card reveal'>
               <h3 className='mb-4'>{project.title}</h3>
@@ -195,14 +195,14 @@ function App() {
         </div>
       </section>
 
-      <section className='max-w-7xl mx-auto px-4 py-16'>
-        <h2 className='text-3xl font-bold mb-8'>Client Testimonials</h2>
-        <div className='card min-h-32 relative overflow-hidden'>
+      <section className='max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16'>
+        <h2 className='text-2xl sm:text-3xl font-bold mb-6 sm:mb-8'>Client Testimonials</h2>
+        <div className='card min-h-52 sm:min-h-40 relative overflow-hidden'>
           {testimonials.map((t, i) => (
-            <blockquote key={t.author} className={`absolute inset-0 p-6 flex items-start gap-4 transition-all duration-700 ${i === slide ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-6'}`}>
+            <blockquote key={t.author} className={`absolute inset-0 p-4 sm:p-6 flex items-start gap-3 sm:gap-4 transition-all duration-700 ${i === slide ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-6'}`}>
               <img src={t.avatar} alt={t.author} className='w-14 h-14 rounded-full object-cover ring-2 ring-amber-500/50 shrink-0' loading='lazy' />
               <div>
-                <p className='flex items-start gap-2'><Star className='text-amber-500 mt-1 shrink-0' />{t.quote}</p>
+                <p className='flex items-start gap-2 text-sm sm:text-base'><Star className='text-amber-500 mt-1 shrink-0' />{t.quote}</p>
                 <p className='mt-3 text-sm text-zinc-500 dark:text-zinc-400 font-medium'>{t.author}</p>
               </div>
             </blockquote>
@@ -210,17 +210,17 @@ function App() {
         </div>
       </section>
 
-      <section className='max-w-7xl mx-auto px-4 py-16 grid md:grid-cols-2 gap-8'>
+      <section className='max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16 grid lg:grid-cols-2 gap-5 sm:gap-8'>
         <div className='card reveal'>
-          <h2 className='text-2xl font-bold mb-4'>Frequently Asked Questions</h2>
-          <ul className='space-y-3 text-sm'>
+          <h2 className='text-xl sm:text-2xl font-bold mb-4'>Frequently Asked Questions</h2>
+          <ul className='space-y-3 text-sm sm:text-base leading-relaxed'>
             <li><b>Do you offer free estimates?</b><br />Yes. We provide fast, no-obligation estimates with transparent scope recommendations.</li>
             <li><b>Can you replace existing cracked concrete?</b><br />Absolutely. We demolish failing sections and repour reinforced slabs designed for longevity.</li>
             <li><b>Do you offer decorative concrete?</b><br />Yes, including stamped concrete finishes for patios, walkways, and driveways.</li>
           </ul>
         </div>
         <div id='contact' className='card reveal'>
-          <h2 className='text-2xl font-bold mb-4'>Get Your Estimate</h2>
+          <h2 className='text-xl sm:text-2xl font-bold mb-4'>Get Your Estimate</h2>
           <form className='space-y-3'>
             <input className='input' placeholder='Full Name' />
             <input className='input' placeholder='Phone' />
@@ -232,7 +232,7 @@ function App() {
       </section>
 
       <footer className='border-t border-zinc-200 dark:border-zinc-800 mt-16'>
-        <div className='max-w-7xl mx-auto px-4 py-10 grid md:grid-cols-3 gap-6 text-sm'>
+        <div className='max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 grid sm:grid-cols-2 lg:grid-cols-3 gap-6 text-sm sm:text-base'>
           <div>
             <p className='font-semibold mb-2'>Concrete Professionals</p>
             <p>Veteran-owned concrete specialists serving Buford and Gainesville.</p>
@@ -252,12 +252,12 @@ function App() {
         </div>
       </footer>
 
-      <button onClick={() => setChatOpen((v) => !v)} className='fixed bottom-20 right-4 bg-zinc-900 dark:bg-zinc-100 text-white dark:text-zinc-900 font-semibold px-4 py-3 rounded-full shadow-2xl transition-all hover:-translate-y-1 inline-flex items-center gap-2 z-50'>
+      <button onClick={() => setChatOpen((v) => !v)} className='fixed bottom-24 sm:bottom-20 right-3 sm:right-4 bg-zinc-900 dark:bg-zinc-100 text-white dark:text-zinc-900 text-sm sm:text-base font-semibold px-3 sm:px-4 py-2.5 sm:py-3 rounded-full shadow-2xl transition-all hover:-translate-y-1 inline-flex items-center gap-2 z-50'>
         <MessageCircle size={16} /> AI Chat
       </button>
 
       {chatOpen && (
-        <div className='fixed bottom-36 right-4 w-[340px] max-w-[calc(100vw-2rem)] rounded-2xl border border-zinc-300 dark:border-zinc-700 bg-white dark:bg-zinc-900 shadow-2xl z-50 overflow-hidden'>
+        <div className='fixed bottom-40 sm:bottom-36 right-2 sm:right-4 w-[min(360px,calc(100vw-1rem))] sm:w-[340px] rounded-2xl border border-zinc-300 dark:border-zinc-700 bg-white dark:bg-zinc-900 shadow-2xl z-50 overflow-hidden'>
           <div className='px-4 py-3 bg-zinc-900 text-white dark:bg-zinc-100 dark:text-zinc-900'>
             <p className='font-semibold'>Instant AI Booking Assistant</p>
             <p className='text-xs opacity-80'>Replies in seconds • Books appointments</p>
@@ -283,7 +283,7 @@ function App() {
         </div>
       )}
 
-      <a href='tel:6783277025' className='fixed bottom-4 right-4 bg-amber-500 hover:bg-amber-400 text-black font-semibold px-5 py-3 rounded-full shadow-2xl transition-all hover:-translate-y-1 inline-flex items-center gap-2'>
+      <a href='tel:6783277025' className='fixed bottom-4 right-3 sm:right-4 bg-amber-500 hover:bg-amber-400 text-black text-sm sm:text-base font-semibold px-4 sm:px-5 py-2.5 sm:py-3 rounded-full shadow-2xl transition-all hover:-translate-y-1 inline-flex items-center gap-2 z-50'>
         <Hammer size={16} /> Call Now
       </a>
     </div>
